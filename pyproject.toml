@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "universalis"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Palurien Meoi <palurien.12i7z@meoi.ninja>"]
 readme = "README.md"
