@@ -5,8 +5,8 @@ import requests
 from pydantic import validate_call
 from ratelimit import sleep_and_retry, limits
 
-from models.current import Current, MultiCurrent
-from models.history import History, MultiHistory
+from universalis.models.current import Current, MultiCurrent
+from universalis.models.history import History, MultiHistory
 
 
 class Universalis:
