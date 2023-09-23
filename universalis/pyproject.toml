@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "universalis"
+version = "0.1.0"
+description = ""
+authors = ["Palurien Meoi <palurien.12i7z@meoi.ninja>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ratelimit = "^2.2.1"
+requests = "^2.31.0"
+numpy = "^1.25.0"
+pydantic = "^2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
