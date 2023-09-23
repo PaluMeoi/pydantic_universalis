@@ -6,7 +6,7 @@ authors = ["Palurien Meoi <palurien.12i7z@meoi.ninja>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 ratelimit = "^2.2.1"
 requests = "^2.31.0"
 numpy = "^1.25.0"
