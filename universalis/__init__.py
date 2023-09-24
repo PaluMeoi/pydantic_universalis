@@ -8,6 +8,7 @@ from ratelimit import sleep_and_retry, limits
 from .models.current import Current, MultiCurrent
 from .models.history import History, MultiHistory
 
+import logging
 
 class Universalis:
     def __init__(self):
@@ -106,8 +107,8 @@ class Universalis:
     ) -> MultiCurrent:
         itemIds = list(set(itemIds))
         if len(itemIds) <= 100:
-            itemIds = ",".join([str(_itemID) for _itemID in itemIds])
-            url = self.base_url + f"/api/v2/{worldDcRegion}/{itemIds}"
+            _itemIds = ",".join([str(_itemID) for _itemID in itemIds])
+            url = self.base_url + f"/api/v2/{worldDcRegion}/{_itemIds}"
             response = self.get(
                 url,
                 listings=listings,
@@ -122,6 +123,7 @@ class Universalis:
                 return MultiCurrent.model_validate(response)
             else:
                 # Changing the request into a "fake" MultiCurrent if only one item is requested
+                logging.debug(f"Creating a fake MultiCurrent for item ID {itemIds[0]}")
                 return self.make_multi("current", response)
         else:
             return self.many_items(
@@ -139,15 +141,13 @@ class Universalis:
     @staticmethod
     def make_multi(model: str, response: dict):
         if model == "history":
-            print("Hist")
             single = History.model_validate(response)
-            model = MultiHistory
+            _model = MultiHistory
         else:
-            print("Current")
             single = Current.model_validate(response)
-            model = MultiCurrent
+            _model = MultiCurrent
 
-        return model.model_validate(
+        return _model.model_validate(
             {
                 "itemIDs":         [single.itemID],
                 "items":           {single.itemID: single},
@@ -223,8 +223,8 @@ class Universalis:
             entriesWithin: Optional[int] = None,
     ) -> MultiHistory:
         if len(itemIds) <= 100:
-            itemIds = ",".join([str(_itemID) for _itemID in itemIds])
-            url = self.base_url + f"/api/v2/history/{worldDcRegion}/{itemIds}"
+            _itemIds = ",".join([str(_itemID) for _itemID in itemIds])
+            url = self.base_url + f"/api/v2/history/{worldDcRegion}/{_itemIds}"
             response = self.get(url, entriesToReturn=entriesToReturn, statsWithin=statsWithin,
                                 entriesWithin=entriesWithin)
             if len(itemIds) > 1:
