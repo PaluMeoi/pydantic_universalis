@@ -28,9 +28,9 @@ class History(BaseModel):
     worldID: Optional[int] = None
     lastUploadTime: datetime
     entries: List[Entry]
-    stackSizeHistogram: dict[int, int]
-    stackSizeHistogramNQ: dict[int, int]
-    stackSizeHistogramHQ: dict[int, int]
+    stackSizeHistogram: dict[str | int, int]
+    stackSizeHistogramNQ: dict[str | int, int]
+    stackSizeHistogramHQ: dict[str | int, int]
     regularSaleVelocity: float
     nqSaleVelocity: float
     hqSaleVelocity: float
