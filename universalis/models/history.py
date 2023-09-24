@@ -28,9 +28,9 @@ class History(BaseModel):
     worldID: Optional[int] = None
     lastUploadTime: datetime
     entries: List[Entry]
-    stackSizeHistogram: dict[int, int]
-    stackSizeHistogramNQ: dict[int, int]
-    stackSizeHistogramHQ: dict[int, int]
+    stackSizeHistogram: dict[str, int]
+    stackSizeHistogramNQ: dict[str, int]
+    stackSizeHistogramHQ: dict[str, int]
     regularSaleVelocity: float
     nqSaleVelocity: float
     hqSaleVelocity: float
@@ -131,7 +131,7 @@ class History(BaseModel):
 
 class MultiHistory(BaseModel):
     itemIDs: list[int]
-    items: dict[int, History]
+    items: dict[str, History]
     worldID: Optional[int] = None
     dcName: Optional[str] = None
     regionName: Optional[str] = None

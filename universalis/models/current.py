@@ -70,9 +70,9 @@ class Current(BaseModel):
     maxPrice: Optional[int] = None
     maxPriceNQ: Optional[int] = None
     maxPriceHQ: Optional[int] = None
-    stackSizeHistogram: Optional[dict[int, int]] = None
-    stackSizeHistogramNQ: Optional[dict[int, int]] = None
-    stackSizeHistogramHQ: Optional[dict[int, int]] = None
+    stackSizeHistogram: Optional[dict[str, int]] = None
+    stackSizeHistogramNQ: Optional[dict[str, int]] = None
+    stackSizeHistogramHQ: Optional[dict[str, int]] = None
     worldName: Optional[str] = None
     dcName: Optional[str] = None
     worldUploadTimes: Optional[dict[str, datetime]] = None
